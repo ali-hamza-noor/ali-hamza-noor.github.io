@@ -17,8 +17,14 @@
             background-color: #101010;
             color: #fff;
             scroll-behavior: smooth;
+            overflow: hidden;
+        }
+        main {
+            height: 100vh;
+            width: 100vw;
             scroll-snap-type: y mandatory;
             overflow-y: scroll;
+            overflow-x: hidden;
         }
         nav {
             position: fixed;
@@ -43,13 +49,13 @@
         }
         section {
             height: 100vh;
+            width: 100vw;
             padding: 100px 20px 40px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
             scroll-snap-align: start;
-            position: relative;
         }
         .intro {
             background: linear-gradient(135deg, #00bcd4, #8e44ad);
@@ -125,65 +131,67 @@
     <a href="#contact">Contact</a>
 </nav>
 
-<section class="intro">
-    <div class="section-content">
-        <h1><span id="typed-text"></span><span id="cursor">|</span></h1>
-        <p>Innovative Cloud & Software Developer</p>
-    </div>
-</section>
-
-<section id="about">
-    <div class="section-content">
-        <h2>About Me</h2>
-        <p>Passionate developer skilled in Kubernetes, cloud technologies, and modern web frameworks. Committed to building efficient, scalable, and resilient software solutions.</p>
-    </div>
-</section>
-
-<section id="skills">
-    <div class="section-content">
-        <h2>Skills</h2>
-        <div class="skill-tags">
-            <span>Kubernetes</span>
-            <span>Docker</span>
-            <span>Helm Charts</span>
-            <span>React.js</span>
-            <span>Node.js</span>
-            <span>gRPC</span>
-            <span>CI/CD</span>
+<main>
+    <section class="intro">
+        <div class="section-content">
+            <h1><span id="typed-text"></span><span id="cursor">|</span></h1>
+            <p>Innovative Cloud & Software Developer</p>
         </div>
-    </div>
-</section>
+    </section>
 
-<section id="experience">
-    <div class="section-content">
-        <h2>Professional Experience</h2>
-        <p><strong>Associate at BlackRock</strong> (Jan 2025 - Present)</p>
-        <ul>
-            <li>Developing scalable GitOps-based container platforms.</li>
-            <li>Enhancing application migration using Helm and Kubernetes.</li>
-            <li>Automating deployment pipelines with ArgoCD.</li>
-        </ul>
-    </div>
-</section>
+    <section id="about">
+        <div class="section-content">
+            <h2>About Me</h2>
+            <p>Passionate developer skilled in Kubernetes, cloud technologies, and modern web frameworks. Committed to building efficient, scalable, and resilient software solutions.</p>
+        </div>
+    </section>
 
-<section id="opensource">
-    <div class="section-content">
-        <h2>Open Source Contributions</h2>
-        <ul>
-            <li><a href="https://github.com/argoproj/argo-cd" target="_blank">Argo CD</a></li>
-            <li><a href="https://github.com/rancher-sandbox/rancher-desktop" target="_blank">Rancher Desktop</a></li>
-            <li><a href="https://github.com/cert-manager/cert-manager" target="_blank">Cert Manager</a></li>
-        </ul>
-    </div>
-</section>
+    <section id="skills">
+        <div class="section-content">
+            <h2>Skills</h2>
+            <div class="skill-tags">
+                <span>Kubernetes</span>
+                <span>Docker</span>
+                <span>Helm Charts</span>
+                <span>React.js</span>
+                <span>Node.js</span>
+                <span>gRPC</span>
+                <span>CI/CD</span>
+            </div>
+        </div>
+    </section>
 
-<section id="contact">
-    <div class="section-content">
-        <h2>Contact</h2>
-        <p>Email: <a href="mailto:alihamzanoor99@gmail.com">alihamzanoor99@gmail.com</a></p>
-        <p>LinkedIn: <a href="https://linkedin.com/in/alinoor2/" target="_blank">linkedin.com/in/alinoor2</a></p>
-    </div>
-</section>
+    <section id="experience">
+        <div class="section-content">
+            <h2>Professional Experience</h2>
+            <p><strong>Associate at BlackRock</strong> (Jan 2025 - Present)</p>
+            <ul>
+                <li>Developing scalable GitOps-based container platforms.</li>
+                <li>Enhancing application migration using Helm and Kubernetes.</li>
+                <li>Automating deployment pipelines with ArgoCD.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="opensource">
+        <div class="section-content">
+            <h2>Open Source Contributions</h2>
+            <ul>
+                <li><a href="https://github.com/argoproj/argo-cd" target="_blank">Argo CD</a></li>
+                <li><a href="https://github.com/rancher-sandbox/rancher-desktop" target="_blank">Rancher Desktop</a></li>
+                <li><a href="https://github.com/cert-manager/cert-manager" target="_blank">Cert Manager</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="section-content">
+            <h2>Contact</h2>
+            <p>Email: <a href="mailto:alihamzanoor99@gmail.com">alihamzanoor99@gmail.com</a></p>
+            <p>LinkedIn: <a href="https://linkedin.com/in/alinoor2/" target="_blank">linkedin.com/in/alinoor2</a></p>
+        </div>
+    </section>
+</main>
 
 <script>
     const phrases = ["Ali Hamza Noor", "Cloud Native Expert", "Kubernetes Enthusiast", "Open Source Contributor"];
