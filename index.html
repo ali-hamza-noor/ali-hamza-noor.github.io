@@ -164,7 +164,7 @@
     <section id="projects">
         <div class="section-content">
             <h2>Projects</h2>
-            <div id="vis-network" style="width: 100%; height: 400px;"></div>
+
             <ul>
                 <li><a href="https://github.com/argoproj/argo-cd" target="_blank">Argo CD Contributor</a></li>
                 <li><a href="https://github.com/rancher-sandbox/rancher-desktop" target="_blank">Rancher Desktop PRs</a></li>
@@ -229,87 +229,51 @@
 </script>
 
 
+
+<div id="graph-bg" style="position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:-1;"></div>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        const container = document.getElementById("vis-network");
-        const nodes = new vis.DataSet([
-            { id: 1, label: "Argo CD", image: "https://upload.wikimedia.org/wikipedia/commons/4/4e/Argo-icon.png", shape: "image" },
-            { id: 2, label: "Rancher", image: "https://upload.wikimedia.org/wikipedia/commons/3/39/Rancher_Logo_Blue.svg", shape: "image" },
-            { id: 3, label: "Cert Manager", image: "https://raw.githubusercontent.com/cert-manager/logo/master/logo/icon-only/cert-manager-icon-color.png", shape: "image" }
-        ]);
-        const edges = new vis.DataSet([
-            { from: 1, to: 2 },
-            { from: 1, to: 3 }
-        ]);
+        const container = document.getElementById("graph-bg");
+        const nodes = new vis.DataSet([]);
+        const edges = new vis.DataSet([]);
+
+        for (let i = 0; i < 30; i++) {
+            nodes.add({ id: i, label: '', color: '#00e0ff' });
+        }
+        for (let i = 0; i < 30; i++) {
+            const from = Math.floor(Math.random() * 30);
+            const to = Math.floor(Math.random() * 30);
+            if (from !== to) edges.add({ from, to });
+        }
+
         const data = { nodes, edges };
         const options = {
+            interaction: { dragNodes: false, zoomView: false, dragView: false },
             nodes: {
-                borderWidth: 2,
-                size: 30,
-                font: { color: '#00e0ff' },
-                color: {
-                    border: '#00e0ff',
-                    background: '#0a0a0a',
-                    highlight: {
-                        border: '#ffffff',
-                        background: '#00e0ff'
-                    }
-                }
+                shape: 'dot',
+                size: 4,
+                color: '#00e0ff',
+                borderWidth: 0
             },
             edges: {
-                color: '#00e0ff',
-                width: 2
+                color: { color: '#00e0ff', opacity: 0.2 },
+                width: 1,
+                smooth: true
             },
             physics: {
-                stabilization: false,
+                enabled: true,
                 barnesHut: {
                     gravitationalConstant: -3000,
-                    springLength: 200
-                }
+                    centralGravity: 0.1,
+                    springLength: 100,
+                    springConstant: 0.04,
+                    damping: 0.09,
+                    avoidOverlap: 1
+                },
+                stabilization: false
             }
         };
         new vis.Network(container, data, options);
-    });
-</script>
-<div id="particles-js"></div>
-<script>
-    loadParticles("particles-js", {
-        fullScreen: { enable: true, zIndex: -1 },
-        background: { color: { value: "#0a0a0a" } },
-        particles: {
-            number: { value: 60, density: { enable: true, area: 800 } },
-            color: { value: "#00e0ff" },
-            shape: { type: "circle" },
-            opacity: { value: 0.3 },
-            size: { value: 3, random: true },
-            move: {
-                enable: true,
-                speed: 1,
-                direction: "none",
-                random: false,
-                straight: false,
-                outModes: { default: "out" },
-                attract: { enable: false }
-            },
-            links: {
-                enable: true,
-                distance: 120,
-                color: "#00e0ff",
-                opacity: 0.2,
-                width: 1
-            }
-        },
-        interactivity: {
-            events: {
-                onHover: { enable: true, mode: "repulse" },
-                onClick: { enable: true, mode: "push" }
-            },
-            modes: {
-                repulse: { distance: 100 },
-                push: { quantity: 4 }
-            }
-        },
-        detectRetina: true
     });
 </script>
 </body>
