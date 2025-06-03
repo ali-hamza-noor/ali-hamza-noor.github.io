@@ -3,33 +3,33 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ali Hamza Noor</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
+    <title>Ali Hamza Noor - Developer Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&display=swap" rel="stylesheet" />
     <style>
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
         html, body {
-            height: 100%;
-            font-family: 'Roboto', sans-serif;
-            background-color: #101010;
+            font-family: 'Outfit', sans-serif;
+            background: #0a0a0a;
             color: #fff;
+            scroll-behavior: smooth;
             overflow: hidden;
         }
         #entry-screen {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: linear-gradient(135deg, #00bcd4, #8e44ad);
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            z-index: 1000;
+            z-index: 9999;
             transition: opacity 1s ease, visibility 1s ease;
         }
         #entry-screen.hidden {
@@ -38,214 +38,130 @@
         }
         #entry-screen h1 {
             font-size: 3rem;
-            margin-bottom: 20px;
+            margin-bottom: 1.5rem;
+            color: #00e0ff;
+            text-shadow: 0 0 10px #00e0ff;
         }
         #enter-btn {
-            padding: 12px 30px;
-            background: #000;
-            color: #00bcd4;
-            font-size: 1.2rem;
+            padding: 12px 32px;
+            background: #00e0ff;
+            color: #0a0a0a;
+            font-size: 1.1rem;
             border: none;
-            border-radius: 25px;
+            border-radius: 30px;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: all 0.3s;
         }
         #enter-btn:hover {
-            background: #222;
+            background: #00b3cc;
         }
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background-color: rgba(0,0,0,0.85);
+            padding: 20px;
             display: flex;
             justify-content: center;
-            padding: 15px;
+            background: rgba(10,10,10,0.85);
             z-index: 100;
             backdrop-filter: blur(10px);
         }
         nav a {
-            color: #00bcd4;
             margin: 0 15px;
+            color: #00e0ff;
+            font-weight: 500;
             text-decoration: none;
-            font-weight: 700;
-            transition: color 0.3s;
+            transition: color 0.3s ease;
         }
         nav a:hover {
             color: #ffffff;
         }
         main {
-            height: 100vh;
-            width: 100vw;
-            overflow-y: scroll;
             scroll-snap-type: y mandatory;
+            overflow-y: scroll;
+            height: 100vh;
         }
         section {
             height: 100vh;
             scroll-snap-align: start;
             display: flex;
-            align-items: center;
-            justify-content: center;
             flex-direction: column;
-            padding: 100px 20px 40px;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
         }
-        .intro {
-            background: linear-gradient(135deg, #00bcd4, #8e44ad);
-            color: #fff;
+        section::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 0;
         }
         .section-content {
+            z-index: 1;
             max-width: 800px;
             text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         h1, h2 {
-            margin-bottom: 20px;
             font-weight: 700;
+            margin-bottom: 20px;
         }
         p, ul {
-            margin-bottom: 20px;
-            font-size: 1.1em;
-            line-height: 1.6em;
+            font-size: 1.1rem;
+            line-height: 1.6;
         }
-        ul {
-            list-style: none;
-            padding-left: 0;
-        }
+        ul { list-style: none; padding-left: 0; }
         .skill-tags span {
+            background: rgba(255,255,255,0.1);
+            padding: 10px 16px;
+            margin: 5px;
+            border-radius: 20px;
             display: inline-block;
-            background: #282828;
-            border-radius: 12px;
-            padding: 10px 14px;
-            margin: 6px;
-            font-size: 0.95em;
-            transition: background 0.3s;
+            font-size: 0.9rem;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s ease;
         }
         .skill-tags span:hover {
-            background: #00bcd4;
-            color: #000;
+            transform: scale(1.1);
+            background: #00e0ff;
+            color: #0a0a0a;
         }
         a {
-            color: #00bcd4;
-            text-decoration: none;
-            transition: all 0.3s;
+            color: #00e0ff;
         }
         a:hover {
-            text-decoration: underline;
-            color: #ffffff;
+            color: #fff;
         }
     </style>
 </head>
 <body>
 <div id="entry-screen">
-    <h1>Welcome to My Portfolio</h1>
-    <button id="enter-btn">Enter</button>
+    <h1>Welcome to My World</h1>
+    <button id="enter-btn">Enter Portfolio</button>
 </div>
-
 <nav>
-    <a href="#about">About Me</a>
+    <a href="#about">About</a>
     <a href="#skills">Skills</a>
-    <a href="#experience">Experience</a>
-    <a href="#opensource">Open Source</a>
+    <a href="#projects">Projects</a>
     <a href="#contact">Contact</a>
 </nav>
-
-<main id="main-content">
-    <section class="intro">
-        <div class="section-content">
-            <h1><span id="typed-text"></span><span id="cursor">|</span></h1>
-            <p>Innovative Cloud & Software Developer</p>
-        </div>
-    </section>
-
-    <section id="about">
-        <div class="section-content">
-            <h2>About Me</h2>
-            <p>Passionate developer skilled in Kubernetes, cloud technologies, and modern web frameworks. Committed to building efficient, scalable, and resilient software solutions.</p>
-        </div>
-    </section>
-
-    <section id="skills">
-        <div class="section-content">
-            <h2>Skills</h2>
-            <div class="skill-tags">
-                <span>Kubernetes</span>
-                <span>Docker</span>
-                <span>Helm Charts</span>
-                <span>React.js</span>
-                <span>Node.js</span>
-                <span>gRPC</span>
-                <span>CI/CD</span>
-            </div>
-        </div>
-    </section>
-
-    <section id="experience">
-        <div class="section-content">
-            <h2>Professional Experience</h2>
-            <p><strong>Associate at BlackRock</strong> (Jan 2025 - Present)</p>
-            <ul>
-                <li>Developing scalable GitOps-based container platforms.</li>
-                <li>Enhancing application migration using Helm and Kubernetes.</li>
-                <li>Automating deployment pipelines with ArgoCD.</li>
-            </ul>
-        </div>
-    </section>
-
-    <section id="opensource">
-        <div class="section-content">
-            <h2>Open Source Contributions</h2>
-            <ul>
-                <li><a href="https://github.com/argoproj/argo-cd" target="_blank">Argo CD</a></li>
-                <li><a href="https://github.com/rancher-sandbox/rancher-desktop" target="_blank">Rancher Desktop</a></li>
-                <li><a href="https://github.com/cert-manager/cert-manager" target="_blank">Cert Manager</a></li>
-            </ul>
-        </div>
-    </section>
-
-    <section id="contact">
-        <div class="section-content">
-            <h2>Contact</h2>
-            <p>Email: <a href="mailto:alihamzanoor99@gmail.com">alihamzanoor99@gmail.com</a></p>
-            <p>LinkedIn: <a href="https://linkedin.com/in/alinoor2/" target="_blank">linkedin.com/in/alinoor2</a></p>
-        </div>
-    </section>
+<main>
+    <!-- Sections like About, Skills, Projects, Contact will go here -->
 </main>
-
 <script>
-    const phrases = ["Ali Hamza Noor", "Cloud Native Expert", "Kubernetes Enthusiast", "Open Source Contributor"];
-    let i = 0, j = 0, currentPhrase = [], isDeleting = false;
-
-    function loop() {
-        const typedText = document.getElementById("typed-text");
-        const cursor = document.getElementById("cursor");
-
-        typedText.textContent = currentPhrase.join("");
-        cursor.style.opacity = 1;
-
-        if (i < phrases.length) {
-            if (!isDeleting && j <= phrases[i].length) {
-                currentPhrase.push(phrases[i][j]);
-                j++;
-            }
-            if (isDeleting && j > 0) {
-                currentPhrase.pop();
-                j--;
-            }
-            if (j === phrases[i].length) isDeleting = true;
-            if (isDeleting && j === 0) {
-                isDeleting = false;
-                i++;
-                if (i === phrases.length) i = 0;
-            }
-        }
-        setTimeout(loop, isDeleting ? 60 : 120);
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-        loop();
-        document.getElementById("enter-btn").addEventListener("click", () => {
-            document.getElementById("entry-screen").classList.add("hidden");
-            document.body.style.overflow = "auto";
-        });
+    document.getElementById("enter-btn").addEventListener("click", () => {
+        document.getElementById("entry-screen").classList.add("hidden");
+        document.body.style.overflow = "auto";
     });
 </script>
 </body>
