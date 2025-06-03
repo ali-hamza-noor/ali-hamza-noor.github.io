@@ -262,9 +262,17 @@
         ctx.clearRect(0, 0, width, height);
         for (let i = 0; i < nodes.length; i++) {
             let a = nodes[i];
-            let dxMouse = a.x - mouse.x;
-            let dyMouse = a.y - mouse.y;
-            let distMouse = dxMouse * dxMouse + dyMouse * dyMouse;
+            if (mouse.x !== null && mouse.y !== null) {
+                let dxMouse = a.x - mouse.x;
+                let dyMouse = a.y - mouse.y;
+                let distMouse = dxMouse * dxMouse + dyMouse * dyMouse;
+
+                if (distMouse < repelRadius * repelRadius) {
+                    let angle = Math.atan2(dyMouse, dxMouse);
+                    a.vx += Math.cos(angle) * 0.3;
+                    a.vy += Math.sin(angle) * 0.3;
+                }
+            }
 
             if (distMouse < repelRadius * repelRadius) {
                 let angle = Math.atan2(dyMouse, dxMouse);
