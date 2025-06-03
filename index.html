@@ -147,11 +147,10 @@
 <body>
 <div id="entry-screen">
     <h1><span id="typed-text"></span><span id="cursor">|</span></h1>
-    <button id="enter-btn">Enter</button>
+    <button id="enter-btn">Enter Portfolio</button>
 </div>
 <nav>
     <a href="#about">About</a>
-    <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
     <a href="#contact">Contact</a>
 </nav>
@@ -163,15 +162,7 @@
         </div>
     </section>
 
-    <section id="skills" style="background-image: url('https://images.unsplash.com/photo-1555949963-aa79dcee981d?auto=format&fit=crop&w=1740&q=80');">
-        <div class="section-content">
-            <h2>Skills</h2>
-            <div class="skill-tags">
-                <span>Kubernetes</span><span>Docker</span><span>Helm</span><span>CI/CD</span>
-                <span>React.js</span><span>Node.js</span><span>Go</span><span>Java</span>
-            </div>
-        </div>
-    </section>
+
 
     <section id="projects" style="background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1740&q=80');">
         <div class="section-content">
@@ -200,8 +191,8 @@
     });
     const phrases = [
         "I'm Ali Hamza Noor",
-        "Wanna know more about me?",
-        "Well, Enter the website then!",
+        "Welcome to my world",
+        "Enter the website to find more about me"
     ];
     let i = 0, j = 0, currentPhrase = [], isDeleting = false;
 
@@ -238,6 +229,70 @@
             document.body.style.overflow = "auto";
         });
     });
+</script>
+<canvas id="background-canvas"></canvas>
+<script>
+    const canvas = document.getElementById('background-canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height, points;
+
+    function initCanvas() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+        points = [];
+        for (let i = 0; i < 100; i++) {
+            points.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                vx: (Math.random() - 0.5) * 0.5,
+                vy: (Math.random() - 0.5) * 0.5
+            });
+        }
+    }
+
+    function drawPoints() {
+        ctx.clearRect(0, 0, width, height);
+        for (let p of points) {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 2, 0, 2 * Math.PI);
+            ctx.fillStyle = '#00e0ff';
+            ctx.fill();
+        }
+        for (let i = 0; i < points.length; i++) {
+            for (let j = i + 1; j < points.length; j++) {
+                const dx = points[i].x - points[j].x;
+                const dy = points[i].y - points[j].y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 120) {
+                    ctx.beginPath();
+                    ctx.moveTo(points[i].x, points[i].y);
+                    ctx.lineTo(points[j].x, points[j].y);
+                    ctx.strokeStyle = `rgba(0, 224, 255, ${1 - dist / 120})`;
+                    ctx.stroke();
+                }
+            }
+        }
+    }
+
+    function updatePoints() {
+        for (let p of points) {
+            p.x += p.vx;
+            p.y += p.vy;
+            if (p.x < 0 || p.x > width) p.vx *= -1;
+            if (p.y < 0 || p.y > height) p.vy *= -1;
+        }
+    }
+
+    function animate() {
+        drawPoints();
+        updatePoints();
+        requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', initCanvas);
+    canvas.style.cssText = 'position:fixed;top:0;left:0;z-index:-1;background:#0a0a0a;';
+    initCanvas();
+    animate();
 </script>
 </body>
 </html>
