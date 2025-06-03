@@ -146,7 +146,7 @@
 </head>
 <body>
 <div id="entry-screen">
-    <h1>Welcome to My World</h1>
+    <h1><span id="typed-text"></span><span id="cursor">|</span></h1>
     <button id="enter-btn">Enter Portfolio</button>
 </div>
 <nav>
@@ -197,6 +197,46 @@
     document.getElementById("enter-btn").addEventListener("click", () => {
         document.getElementById("entry-screen").classList.add("hidden");
         document.body.style.overflow = "auto";
+    });
+    const phrases = [
+        "I'm Ali Hamza Noor",
+        "Welcome to my world",
+        "Enter the website to find more about me"
+    ];
+    let i = 0, j = 0, currentPhrase = [], isDeleting = false;
+
+    function typeLoop() {
+        const typedText = document.getElementById("typed-text");
+        const cursor = document.getElementById("cursor");
+
+        typedText.textContent = currentPhrase.join("");
+        cursor.style.opacity = 1;
+
+        if (i < phrases.length) {
+            if (!isDeleting && j <= phrases[i].length) {
+                currentPhrase.push(phrases[i][j]);
+                j++;
+            }
+            if (isDeleting && j > 0) {
+                currentPhrase.pop();
+                j--;
+            }
+            if (j === phrases[i].length) isDeleting = true;
+            if (isDeleting && j === 0) {
+                isDeleting = false;
+                i++;
+                if (i === phrases.length) i = 0;
+            }
+        }
+        setTimeout(typeLoop, isDeleting ? 50 : 100);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        typeLoop();
+        document.getElementById("enter-btn").addEventListener("click", () => {
+            document.getElementById("entry-screen").classList.add("hidden");
+            document.body.style.overflow = "auto";
+        });
     });
 </script>
 </body>
