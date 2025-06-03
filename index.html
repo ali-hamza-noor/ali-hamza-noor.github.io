@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ali Hamza Noor - Futuristic Developer Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #101010;
+            color: #fff;
+            scroll-behavior: smooth;
+        }
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(0,0,0,0.9);
+            display: flex;
+            justify-content: center;
+            padding: 15px;
+            z-index: 10;
+        }
+        nav a {
+            color: #00bcd4;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: 700;
+        }
+        nav a:hover {
+            color: #fff;
+        }
+        section {
+            min-height: 100vh;
+            padding: 80px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            scroll-snap-align: start;
+        }
+        .intro {
+            background: linear-gradient(135deg, #00bcd4, #8e44ad);
+        }
+        .section-content {
+            max-width: 800px;
+            text-align: center;
+        }
+        h1, h2 {
+            margin-bottom: 20px;
+        }
+        p, ul {
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .skill-tags span {
+            display: inline-block;
+            background: #282828;
+            border-radius: 10px;
+            padding: 8px 12px;
+            margin: 5px;
+        }
+        a {
+            color: #00bcd4;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <a href="#about">About Me</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#opensource">Open Source</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<section class="intro">
+    <div class="section-content">
+        <h1>Ali Hamza Noor</h1>
+        <p>Innovative Cloud & Software Developer</p>
+    </div>
+</section>
+
+<section id="about">
+    <div class="section-content">
+        <h2>About Me</h2>
+        <p>Passionate developer skilled in Kubernetes, cloud technologies, and modern web frameworks. Committed to building efficient, scalable, and resilient software solutions.</p>
+    </div>
+</section>
+
+<section id="skills">
+    <div class="section-content">
+        <h2>Skills</h2>
+        <div class="skill-tags">
+            <span>Kubernetes</span>
+            <span>Docker</span>
+            <span>Helm Charts</span>
+            <span>React.js</span>
+            <span>Node.js</span>
+            <span>gRPC</span>
+            <span>CI/CD</span>
+        </div>
+    </div>
+</section>
+
+<section id="experience">
+    <div class="section-content">
+        <h2>Professional Experience</h2>
+        <p><strong>Associate at BlackRock</strong> (Jan 2025 - Present)</p>
+        <ul>
+            <li>Developing scalable GitOps-based container platforms.</li>
+            <li>Enhancing application migration using Helm and Kubernetes.</li>
+            <li>Automating deployment pipelines with ArgoCD.</li>
+        </ul>
+    </div>
+</section>
+
+<section id="opensource">
+    <div class="section-content">
+        <h2>Open Source Contributions</h2>
+        <ul>
+            <li><a href="https://github.com/argoproj/argo-cd">Argo CD</a></li>
+            <li><a href="https://github.com/rancher-sandbox/rancher-desktop">Rancher Desktop</a></li>
+            <li><a href="https://github.com/cert-manager/cert-manager">Cert Manager</a></li>
+        </ul>
+    </div>
+</section>
+
+<section id="contact">
+    <div class="section-content">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:alihamzanoor99@gmail.com">alihamzanoor99@gmail.com</a></p>
+        <p>LinkedIn: <a href="https://linkedin.com/in/alinoor2/">linkedin.com/in/alinoor2</a></p>
+    </div>
+</section>
+</body>
+</html>
