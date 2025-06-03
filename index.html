@@ -139,6 +139,7 @@
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
 </head>
 <body>
 <div id="entry-screen">
@@ -163,7 +164,7 @@
     <section id="projects">
         <div class="section-content">
             <h2>Projects</h2>
-            <canvas id="project-graph" width="600" height="400" style="margin: 20px 0; max-width: 90%;"></canvas>
+            <div id="vis-network" style="width: 100%; height: 400px;"></div>
             <ul>
                 <li><a href="https://github.com/argoproj/argo-cd" target="_blank">Argo CD Contributor</a></li>
                 <li><a href="https://github.com/rancher-sandbox/rancher-desktop" target="_blank">Rancher Desktop PRs</a></li>
@@ -229,48 +230,50 @@
 
 
 <script>
-    const graphCanvas = document.getElementById('project-graph');
-    if (graphCanvas) {
-        const gctx = graphCanvas.getContext('2d');
-        const nodes = [
-            { x: 300, y: 100, label: 'Argo CD', url: 'https://upload.wikimedia.org/wikipedia/commons/4/4e/Argo-icon.png' },
-            { x: 200, y: 250, label: 'Rancher', url: 'https://upload.wikimedia.org/wikipedia/commons/3/39/Rancher_Logo_Blue.svg' },
-            { x: 400, y: 250, label: 'Cert Manager', url: 'https://raw.githubusercontent.com/cert-manager/logo/master/logo/icon-only/cert-manager-icon-color.png' }
-        ];
-
-        const images = [];
-        let loaded = 0;
-        nodes.forEach((node, i) => {
-            const img = new Image();
-            img.src = node.url;
-            img.onload = () => {
-                images[i] = img;
-                loaded++;
-                if (loaded === nodes.length) drawGraph();
+    document.addEventListener("DOMContentLoaded", function () {
+        const container = document.getElementById("vis-network");
+        const nodes = new vis.DataSet([
+            { id: 1, label: "Argo CD", image: "https://upload.wikimedia.org/wikipedia/commons/4/4e/Argo-icon.png", shape: "image" },
+            { id: 2, label: "Rancher", image: "https://upload.wikimedia.org/wikipedia/commons/3/39/Rancher_Logo_Blue.svg", shape: "image" },
+            { id: 3, label: "Cert Manager", image: "https://raw.githubusercontent.com/cert-manager/logo/master/logo/icon-only/cert-manager-icon-color.png", shape: "image" }
+        ]);
+        const edges = new vis.DataSet([
+            { from: 1, to: 2 },
+            { from: 1, to: 3 }
+        ]);
+        const data = { nodes, edges };
+        const options = {
+            nodes: {
+                borderWidth: 2,
+                size: 30,
+                font: { color: '#00e0ff' },
+                color: {
+                    border: '#00e0ff',
+                    background: '#0a0a0a',
+                    highlight: {
+                        border: '#ffffff',
+                        background: '#00e0ff'
+                    }
+                }
+            },
+            edges: {
+                color: '#00e0ff',
+                width: 2
+            },
+            physics: {
+                stabilization: false,
+                barnesHut: {
+                    gravitationalConstant: -3000,
+                    springLength: 200
+                }
             }
-        });
-
-        function drawGraph() {
-            gctx.clearRect(0, 0, graphCanvas.width, graphCanvas.height);
-            gctx.strokeStyle = '#00e0ff';
-            gctx.lineWidth = 2;
-
-            gctx.beginPath();
-            gctx.moveTo(nodes[0].x, nodes[0].y);
-            gctx.lineTo(nodes[1].x, nodes[1].y);
-            gctx.moveTo(nodes[0].x, nodes[0].y);
-            gctx.lineTo(nodes[2].x, nodes[2].y);
-            gctx.stroke();
-
-            nodes.forEach((node, i) => {
-                gctx.drawImage(images[i], node.x - 25, node.y - 25, 50, 50);
-            });
-        }
-    }
+        };
+        new vis.Network(container, data, options);
+    });
 </script>
 <div id="particles-js"></div>
 <script>
-    tsParticles.load("particles-js", {
+    loadParticles("particles-js", {
         fullScreen: { enable: true, zIndex: -1 },
         background: { color: { value: "#0a0a0a" } },
         particles: {
