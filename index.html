@@ -6,6 +6,14 @@
     <title>Ali Hamza Noor - Developer Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&display=swap" rel="stylesheet" />
     <style>
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
         * {
             margin: 0;
             padding: 0;
@@ -93,14 +101,7 @@
             background-position: center;
             position: relative;
         }
-        section::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 0;
-        }
+
         .section-content {
             z-index: 1;
             max-width: 800px;
@@ -155,7 +156,7 @@
     <a href="#contact">Contact</a>
 </nav>
 <main>
-    <section id="about" style="background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1740&q=80');">
+    <section id="about" >
         <div class="section-content">
             <h2>About Me</h2>
             <p>I'm Ali Hamza Noor, a cloud-native software developer passionate about building scalable and elegant systems. I specialize in Kubernetes, CI/CD pipelines, and cloud infrastructure engineering.</p>
@@ -164,7 +165,7 @@
 
 
 
-    <section id="projects" style="background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1740&q=80');">
+    <section id="projects" >
         <div class="section-content">
             <h2>Projects</h2>
             <p>Explore some of my open-source and professional work:</p>
@@ -176,7 +177,7 @@
         </div>
     </section>
 
-    <section id="contact" style="background-image: url('https://images.unsplash.com/photo-1549921296-3a6b95e191b6?auto=format&fit=crop&w=1740&q=80');">
+    <section id="contact" >
         <div class="section-content">
             <h2>Contact Me</h2>
             <p>Email: <a href="mailto:alihamzanoor99@gmail.com">alihamzanoor99@gmail.com</a></p>
@@ -230,69 +231,56 @@
         });
     });
 </script>
-<canvas id="background-canvas"></canvas>
+
+<div id="particles-js"></div>
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script>
-    const canvas = document.getElementById('background-canvas');
-    const ctx = canvas.getContext('2d');
-    let width, height, points;
-
-    function initCanvas() {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
-        points = [];
-        for (let i = 0; i < 100; i++) {
-            points.push({
-                x: Math.random() * width,
-                y: Math.random() * height,
-                vx: (Math.random() - 0.5) * 0.5,
-                vy: (Math.random() - 0.5) * 0.5
-            });
-        }
-    }
-
-    function drawPoints() {
-        ctx.clearRect(0, 0, width, height);
-        for (let p of points) {
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, 2, 0, 2 * Math.PI);
-            ctx.fillStyle = '#00e0ff';
-            ctx.fill();
-        }
-        for (let i = 0; i < points.length; i++) {
-            for (let j = i + 1; j < points.length; j++) {
-                const dx = points[i].x - points[j].x;
-                const dy = points[i].y - points[j].y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < 120) {
-                    ctx.beginPath();
-                    ctx.moveTo(points[i].x, points[i].y);
-                    ctx.lineTo(points[j].x, points[j].y);
-                    ctx.strokeStyle = `rgba(0, 224, 255, ${1 - dist / 120})`;
-                    ctx.stroke();
-                }
+    particlesJS("particles-js", {
+        "particles": {
+            "number": {
+                "value": 80,
+                "density": { "enable": true, "value_area": 800 }
+            },
+            "color": { "value": "#ffffff" },
+            "shape": { "type": "circle" },
+            "opacity": {
+                "value": 0.5,
+                "random": false
+            },
+            "size": {
+                "value": 3,
+                "random": true
+            },
+            "line_linked": {
+                "enable": true,
+                "distance": 150,
+                "color": "#ffffff",
+                "opacity": 0.4,
+                "width": 1
+            },
+            "move": {
+                "enable": true,
+                "speed": 6,
+                "direction": "none",
+                "random": false,
+                "straight": false,
+                "out_mode": "out"
             }
-        }
-    }
-
-    function updatePoints() {
-        for (let p of points) {
-            p.x += p.vx;
-            p.y += p.vy;
-            if (p.x < 0 || p.x > width) p.vx *= -1;
-            if (p.y < 0 || p.y > height) p.vy *= -1;
-        }
-    }
-
-    function animate() {
-        drawPoints();
-        updatePoints();
-        requestAnimationFrame(animate);
-    }
-
-    window.addEventListener('resize', initCanvas);
-    canvas.style.cssText = 'position:fixed;top:0;left:0;z-index:-1;background:#0a0a0a;';
-    initCanvas();
-    animate();
+        },
+        "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+                "onhover": { "enable": true, "mode": "repulse" },
+                "onclick": { "enable": true, "mode": "push" },
+                "resize": true
+            },
+            "modes": {
+                "repulse": { "distance": 100 },
+                "push": { "particles_nb": 4 }
+            }
+        },
+        "retina_detect": true
+    });
 </script>
 </body>
 </html>
