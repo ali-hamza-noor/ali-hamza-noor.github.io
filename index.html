@@ -127,7 +127,7 @@
 
 <section class="intro">
     <div class="section-content">
-        <h1>Ali Hamza Noor</h1>
+        <h1><span id="typed-text"></span><span id="cursor">|</span></h1>
         <p>Innovative Cloud & Software Developer</p>
     </div>
 </section>
@@ -184,5 +184,38 @@
         <p>LinkedIn: <a href="https://linkedin.com/in/alinoor2/" target="_blank">linkedin.com/in/alinoor2</a></p>
     </div>
 </section>
+
+<script>
+    const phrases = ["Ali Hamza Noor", "Cloud Native Expert", "Kubernetes Enthusiast", "Open Source Contributor"];
+    let i = 0, j = 0, currentPhrase = [], isDeleting = false;
+
+    function loop() {
+        const typedText = document.getElementById("typed-text");
+        const cursor = document.getElementById("cursor");
+
+        typedText.textContent = currentPhrase.join("");
+        cursor.style.opacity = 1;
+
+        if (i < phrases.length) {
+            if (!isDeleting && j <= phrases[i].length) {
+                currentPhrase.push(phrases[i][j]);
+                j++;
+            }
+            if (isDeleting && j > 0) {
+                currentPhrase.pop();
+                j--;
+            }
+            if (j === phrases[i].length) isDeleting = true;
+            if (isDeleting && j === 0) {
+                isDeleting = false;
+                i++;
+                if (i === phrases.length) i = 0;
+            }
+        }
+        setTimeout(loop, isDeleting ? 60 : 120);
+    }
+
+    document.addEventListener("DOMContentLoaded", loop);
+</script>
 </body>
 </html>
